@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 背景图 -->
+	<item android:id="@+id/background" android:drawable="@drawable/video_line01" />
+	<!--全部能量图  -->
+	<item android:id="@+id/SecondaryProgress"
+		android:drawable="@drawable/video_line01" />
+	<!-- 进和能量图 -->
+	<item android:id="@+id/progress" android:drawable="@drawable/video_line02" />
+</layer-list>

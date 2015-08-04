@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-rotate android:drawable="@drawable/biz_news_detailpage_loading_large_icon" android:fromDegrees="0.0" android:toDegrees="360.0" android:pivotX="50.0%" android:pivotY="50.0%"
+  xmlns:android="http://schemas.android.com/apk/res/android" />
