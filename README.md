@@ -1,6 +1,6 @@
 #AndroidVideoPlayer
 ###Android Video Player , Like NetEaseNews Video Player.
->Only Support mp4 & 3gp format
+>Only Support mp4 & 3gp format  
 >Support play at partial view & fullscreen
 
 `Screenshots` 
