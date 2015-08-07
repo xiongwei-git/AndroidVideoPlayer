@@ -222,7 +222,7 @@ public class SuperVideoPlayer extends RelativeLayout {
     private void showOrHideController() {
         if (mMediaController.getVisibility() == View.VISIBLE) {
             Animation animation = AnimationUtils.loadAnimation(mContext,
-                    R.anim.option_leave_from_bottom);
+                    R.anim.anim_exit_from_bottom);
             animation.setAnimationListener(new AnimationImp() {
                 @Override
                 public void onAnimationEnd(Animation animation) {
@@ -235,7 +235,7 @@ public class SuperVideoPlayer extends RelativeLayout {
             mMediaController.setVisibility(View.VISIBLE);
             mMediaController.clearAnimation();
             Animation animation = AnimationUtils.loadAnimation(mContext,
-                    R.anim.option_entry_from_bottom);
+                    R.anim.anim_enter_from_bottom);
             mMediaController.startAnimation(animation);
             resetHideTimer();
         }
@@ -251,7 +251,7 @@ public class SuperVideoPlayer extends RelativeLayout {
         mMediaController.setVisibility(View.VISIBLE);
         mMediaController.clearAnimation();
         Animation animation = AnimationUtils.loadAnimation(mContext,
-                R.anim.option_entry_from_bottom);
+                R.anim.anim_enter_from_bottom);
         mMediaController.startAnimation(animation);
     }
 
