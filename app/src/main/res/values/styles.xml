@@ -5,6 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="ActivityTheme.Full" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
     <style name="base_large_progressbar_style">
         <item name="android:maxWidth">43.0dip</item>
         <item name="android:maxHeight">43.0dip</item>

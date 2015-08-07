@@ -8,15 +8,15 @@
     <RelativeLayout android:layout_gravity="center_vertical" android:layout_width="0.0dip"
                     android:layout_height="wrap_content" android:layout_marginLeft="5.0dip"
                     android:layout_marginTop="4.0dip" android:layout_marginRight="5.0dip" android:layout_weight="1.0">
-        <SeekBar android:id="@+id/mediacontroller_progress" android:layout_width="fill_parent"
+        <SeekBar android:id="@+id/media_controller_progress" android:layout_width="fill_parent"
                  android:layout_height="wrap_content" android:progressDrawable="@drawable/biz_video_progressbar"
                  android:thumb="@drawable/biz_video_progress_thumb" android:thumbOffset="1.5dip"/>
 
         <TextView android:textSize="11.0sp" android:textColor="@android:color/white"
                   android:id="@+id/time" android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_below="@+id/mediacontroller_progress"
-                  android:layout_alignRight="@+id/mediacontroller_progress"/>
+                  android:layout_below="@+id/media_controller_progress"
+                  android:layout_alignRight="@+id/media_controller_progress"/>
     </RelativeLayout>
     <TextView android:textSize="11.0sp" android:textColor="@android:color/white"
               android:layout_gravity="center_vertical" android:id="@+id/user_count"
