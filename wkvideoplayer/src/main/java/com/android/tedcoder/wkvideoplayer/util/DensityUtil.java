@@ -1,4 +1,4 @@
-package com.android.tedcoder.androidvideoplayer.util;
+package com.android.tedcoder.wkvideoplayer.util;
 
 import android.content.Context;
 

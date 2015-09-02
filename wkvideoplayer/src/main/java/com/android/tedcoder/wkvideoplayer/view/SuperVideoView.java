@@ -1,4 +1,4 @@
-package com.android.tedcoder.androidvideoplayer.view;
+package com.android.tedcoder.wkvideoplayer.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

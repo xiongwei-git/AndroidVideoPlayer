@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <shape android:shape="line">
-            <stroke android:width="2.0dip" android:color="@color/biz_audio_progress_bg" />
+            <stroke android:width="2.0dip" android:color="@color/biz_audio_progress_first" />
         </shape>
     </item>
     <item android:id="@android:id/secondaryProgress">
@@ -16,7 +16,7 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="line">
-                <stroke android:width="2.0dip" android:color="@color/biz_audio_progress_first" />
+                <stroke android:width="2.0dip" android:color="@color/biz_audio_progress_bg" />
             </shape>
         </clip>
     </item>

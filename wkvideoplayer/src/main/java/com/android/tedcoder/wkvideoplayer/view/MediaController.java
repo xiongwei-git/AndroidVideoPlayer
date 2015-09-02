@@ -1,4 +1,4 @@
-package com.android.tedcoder.androidvideoplayer.view;
+package com.android.tedcoder.wkvideoplayer.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.android.tedcoder.androidvideoplayer.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import com.android.tedcoder.wkvideoplayer.R;
+import com.android.tedcoder.wkvideoplayer.model.Video;
+import com.android.tedcoder.wkvideoplayer.model.VideoUrl;
 
 /**
  * Created by Ted on 2015/8/4.
@@ -24,6 +27,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     private TextView mTimeTxt;//播放时间
     private ImageView mExpandImg;//最大化播放按钮
     private ImageView mShrinkImg;//缩放播放按钮
+    private EasySwitcher mVideoSrcSwitcher;//视频源切换器
+    private EasySwitcher mVideoFormatSwitcher;//视频清晰度切换器
 
     private MediaControlImpl mMediaControl;
 
@@ -43,6 +48,32 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         mMediaControl.onProgressTurn(ProgressState.STOP, 0);
     }
 
+    private EasySwitcher.EasySwitcherCallbackImpl mSrcSwitcherCallback = new EasySwitcher.EasySwitcherCallbackImpl() {
+        @Override
+        public void onSelectItem(int position, String name) {
+            mMediaControl.onSelectSrc(position);
+        }
+
+        @Override
+        public void onShowList() {
+            mMediaControl.alwaysShowController();
+            mVideoFormatSwitcher.closeSwitchList();
+        }
+    };
+
+    private EasySwitcher.EasySwitcherCallbackImpl mFormatSwitcherCallback = new EasySwitcher.EasySwitcherCallbackImpl() {
+        @Override
+        public void onSelectItem(int position, String name) {
+            mMediaControl.onSelectFormat(position);
+        }
+
+        @Override
+        public void onShowList() {
+            mMediaControl.alwaysShowController();
+            mVideoSrcSwitcher.closeSwitchList();
+        }
+    };
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.pause) {
@@ -52,6 +83,27 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         } else if (view.getId() == R.id.shrink) {
             mMediaControl.onPageTurn();
         }
+    }
+
+    public void initVideoList(ArrayList<Video> videoList){
+        ArrayList<String> name = new ArrayList<>();
+        for (Video video:videoList){
+            name.add(video.getVideoName());
+        }
+        mVideoSrcSwitcher.initData(name);
+    }
+
+    public void initPlayVideo(Video video){
+        ArrayList<String> format = new ArrayList<>();
+        for (VideoUrl url:video.getVideoUrl()){
+            format.add(url.getFormatName());
+        }
+        mVideoFormatSwitcher.initData(format);
+    }
+
+    public void closeAllSwitchList(){
+        mVideoFormatSwitcher.closeSwitchList();
+        mVideoSrcSwitcher.closeSwitchList();
     }
 
     public void setProgressBar(int progress, int secondProgress) {
@@ -105,6 +157,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         View.inflate(context, R.layout.biz_video_media_controller, this);
         mPlayImg = (ImageView) findViewById(R.id.pause);
         mProgressSeekBar = (SeekBar) findViewById(R.id.media_controller_progress);
+        mVideoSrcSwitcher = (EasySwitcher)findViewById(R.id.video_src_switcher);
+        mVideoFormatSwitcher = (EasySwitcher)findViewById(R.id.video_format_switcher);
         mTimeTxt = (TextView) findViewById(R.id.time);
         mExpandImg = (ImageView) findViewById(R.id.expand);
         mShrinkImg = (ImageView) findViewById(R.id.shrink);
@@ -118,6 +172,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         mExpandImg.setOnClickListener(this);
         setPageType(PageType.SHRINK);
         setPlayState(PlayState.PAUSE);
+        mVideoFormatSwitcher.setEasySwitcherCallback(mFormatSwitcherCallback);
+        mVideoSrcSwitcher.setEasySwitcherCallback(mSrcSwitcherCallback);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -163,6 +219,12 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         void onPageTurn();
 
         void onProgressTurn(ProgressState state, int progress);
+
+        void onSelectSrc(int position);
+
+        void onSelectFormat(int position);
+
+        void alwaysShowController();
     }
 
 }

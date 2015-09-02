@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="play_error_message">Impossible to play the video.</string>
+    <string name="play_progressive_error_message">Impossible to play the progressive video.</string>
 </resources>

@@ -18,12 +18,12 @@
             android:layout_gravity="center"
             android:src="@drawable/biz_video_list_play_icon_big"/>
 
-        <com.android.tedcoder.androidvideoplayer.view.SuperVideoPlayer
+        <com.android.tedcoder.wkvideoplayer.view.SuperVideoPlayer
             android:id="@+id/video_player_item_1"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:visibility="gone">
-        </com.android.tedcoder.androidvideoplayer.view.SuperVideoPlayer>
+        </com.android.tedcoder.wkvideoplayer.view.SuperVideoPlayer>
 
     </FrameLayout>
 
@@ -41,12 +41,12 @@
             android:layout_gravity="center"
             android:src="@drawable/biz_video_list_play_icon_big"/>
 
-        <com.android.tedcoder.androidvideoplayer.view.SuperVideoPlayer
+        <com.android.tedcoder.wkvideoplayer.view.SuperVideoPlayer
             android:id="@+id/video_player_item_2"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:visibility="gone">
-        </com.android.tedcoder.androidvideoplayer.view.SuperVideoPlayer>
+        </com.android.tedcoder.wkvideoplayer.view.SuperVideoPlayer>
 
     </FrameLayout>
 
