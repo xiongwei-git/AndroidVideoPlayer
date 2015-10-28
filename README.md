@@ -4,7 +4,7 @@
 >Support play at partial view & fullscreen
 
 ###Update Logs
-*1、Add DLNA Support*
+*1、Add DLNA Support*  
 *2、Fix bugs*
 
 
