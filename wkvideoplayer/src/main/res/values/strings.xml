@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">LFVideoPlayer</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="dlna_device_title">"%s"正在播放中</string>
 </resources>

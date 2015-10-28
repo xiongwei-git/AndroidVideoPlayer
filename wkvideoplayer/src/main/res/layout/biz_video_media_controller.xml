@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/media_controller_view_height"
         android:layout_alignParentBottom="true"
+        android:clickable="true"
         android:background="@drawable/biz_video_bar_bg"
         android:orientation="horizontal">
 
@@ -22,6 +23,7 @@
             android:src="@drawable/biz_video_play"/>
 
         <RelativeLayout
+            android:id="@+id/click_layout"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -50,6 +52,7 @@
         </RelativeLayout>
 
         <View
+            android:id="@+id/view_menu_placeholder"
             android:layout_width="120dp"
             android:layout_height="match_parent"/>
 
@@ -80,6 +83,7 @@
 
 
     <LinearLayout
+        android:id="@+id/view_menu"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

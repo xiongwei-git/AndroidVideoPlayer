@@ -30,6 +30,48 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
+    <RelativeLayout
+        android:id="@+id/rel_dlna_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+
+        <TextView
+            android:id="@+id/txt_dlna_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="xx正在播放中"
+            android:textColor="#ffffff"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt_dlna_title"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/icon_tv_big"/>
+
+        <TextView
+            android:id="@+id/txt_dlna_exit"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_dlna_title"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_exit_dlna_bg_bg"
+            android:gravity="center"
+            android:text="退出电视播放"
+            android:textColor="#fe9513"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
     <com.android.tedcoder.wkvideoplayer.view.MediaController
         android:id="@+id/controller"
         android:layout_width="match_parent"
@@ -40,7 +82,8 @@
         android:id="@+id/progressbar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@android:color/black">
+        android:background="@android:color/black"
+        android:visibility="gone">
 
         <ProgressBar
             style="@style/video_progressbar_style"
@@ -68,7 +111,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/video_close_view">
+        android:layout_toLeftOf="@id/video_close_view"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"

@@ -9,17 +9,18 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.android.tedcoder.wkvideoplayer.R;
+import com.android.tedcoder.wkvideoplayer.model.Video;
+import com.android.tedcoder.wkvideoplayer.model.VideoUrl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import com.android.tedcoder.wkvideoplayer.R;
-import com.android.tedcoder.wkvideoplayer.model.Video;
-import com.android.tedcoder.wkvideoplayer.model.VideoUrl;
 
 /**
  * Created by Ted on 2015/8/4.
+ * MediaController
  */
 public class MediaController extends FrameLayout implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
     private ImageView mPlayImg;//播放按钮
@@ -29,6 +30,8 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     private ImageView mShrinkImg;//缩放播放按钮
     private EasySwitcher mVideoSrcSwitcher;//视频源切换器
     private EasySwitcher mVideoFormatSwitcher;//视频清晰度切换器
+    private View mMenuView;
+    private View mMenuViewPlaceHolder;
 
     private MediaControlImpl mMediaControl;
 
@@ -85,26 +88,45 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         }
     }
 
-    public void initVideoList(ArrayList<Video> videoList){
+    public void initVideoList(ArrayList<Video> videoList) {
         ArrayList<String> name = new ArrayList<>();
-        for (Video video:videoList){
+        for (Video video : videoList) {
             name.add(video.getVideoName());
         }
         mVideoSrcSwitcher.initData(name);
     }
 
-    public void initPlayVideo(Video video){
+    public void initPlayVideo(Video video) {
         ArrayList<String> format = new ArrayList<>();
-        for (VideoUrl url:video.getVideoUrl()){
+        for (VideoUrl url : video.getVideoUrl()) {
             format.add(url.getFormatName());
         }
         mVideoFormatSwitcher.initData(format);
     }
 
-    public void closeAllSwitchList(){
+    public void closeAllSwitchList() {
         mVideoFormatSwitcher.closeSwitchList();
         mVideoSrcSwitcher.closeSwitchList();
     }
+
+    /**
+     * 初始化精简模式
+     */
+    public void initTrimmedMode() {
+        mMenuView.setVisibility(GONE);
+        mMenuViewPlaceHolder.setVisibility(GONE);
+        mExpandImg.setVisibility(INVISIBLE);
+        mShrinkImg.setVisibility(INVISIBLE);
+    }
+
+    /***
+     * 强制横屏模式
+     */
+    public void forceLandscapeMode(){
+        mExpandImg.setVisibility(INVISIBLE);
+        mShrinkImg.setVisibility(INVISIBLE);
+    }
+
 
     public void setProgressBar(int progress, int secondProgress) {
         if (progress < 0) progress = 0;
@@ -119,7 +141,7 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         mPlayImg.setImageResource(playState.equals(PlayState.PLAY) ? R.drawable.biz_video_pause : R.drawable.biz_video_play);
     }
 
-    public void setPageType(PageType pageType){
+    public void setPageType(PageType pageType) {
         mExpandImg.setVisibility(pageType.equals(PageType.EXPAND) ? GONE : VISIBLE);
         mShrinkImg.setVisibility(pageType.equals(PageType.SHRINK) ? GONE : VISIBLE);
     }
@@ -128,7 +150,7 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         mTimeTxt.setText(getPlayTime(nowSecond, allSecond));
     }
 
-    public void playFinish(int allTime){
+    public void playFinish(int allTime) {
         mProgressSeekBar.setProgress(0);
         setPlayProgressTxt(0, allTime);
         setPlayState(PlayState.PAUSE);
@@ -157,11 +179,13 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         View.inflate(context, R.layout.biz_video_media_controller, this);
         mPlayImg = (ImageView) findViewById(R.id.pause);
         mProgressSeekBar = (SeekBar) findViewById(R.id.media_controller_progress);
-        mVideoSrcSwitcher = (EasySwitcher)findViewById(R.id.video_src_switcher);
-        mVideoFormatSwitcher = (EasySwitcher)findViewById(R.id.video_format_switcher);
+        mVideoSrcSwitcher = (EasySwitcher) findViewById(R.id.video_src_switcher);
+        mVideoFormatSwitcher = (EasySwitcher) findViewById(R.id.video_format_switcher);
         mTimeTxt = (TextView) findViewById(R.id.time);
         mExpandImg = (ImageView) findViewById(R.id.expand);
         mShrinkImg = (ImageView) findViewById(R.id.shrink);
+        mMenuView = findViewById(R.id.view_menu);
+        mMenuViewPlaceHolder = findViewById(R.id.view_menu_placeholder);
         initData();
     }
 
@@ -182,16 +206,16 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
         return formatter.format(new Date(time));
     }
 
-    private String getPlayTime(int playSecond,int allSecond){
+    private String getPlayTime(int playSecond, int allSecond) {
         String playSecondStr = "00:00";
         String allSecondStr = "00:00";
-        if(playSecond > 0){
+        if (playSecond > 0) {
             playSecondStr = formatPlayTime(playSecond);
         }
-        if(allSecond > 0){
+        if (allSecond > 0) {
             allSecondStr = formatPlayTime(allSecond);
         }
-        return playSecondStr+"/"+allSecondStr;
+        return playSecondStr + "/" + allSecondStr;
     }
 
     /**
@@ -209,7 +233,7 @@ public class MediaController extends FrameLayout implements SeekBar.OnSeekBarCha
     }
 
     public enum ProgressState {
-        START, DOING,STOP
+        START, DOING, STOP
     }
 
 

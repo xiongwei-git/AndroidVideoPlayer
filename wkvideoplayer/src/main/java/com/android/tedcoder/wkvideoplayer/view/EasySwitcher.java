@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Ted on 2015/9/1.
+ * EasySwitcher
  */
 public class EasySwitcher extends LinearLayout{
     private final int NORMAL_ICON = R.drawable.shipin_shang;
@@ -77,7 +78,7 @@ public class EasySwitcher extends LinearLayout{
         @Override
         public void onClick(View v) {
             if(null != v && v instanceof TextView){
-                int position = ((Integer)v.getTag()).intValue();
+                int position = (int)v.getTag();
                 String name = ((TextView)v).getText().toString();
                 closeSwitchList();
                 mSelectItemTxt.setText(name);
@@ -147,7 +148,8 @@ public class EasySwitcher extends LinearLayout{
     private void setSelectItemStyle(boolean isSelect){
         mSelectItemTxt.setSelected(isSelect);
         Drawable rightDrawable = mContext.getResources().getDrawable(isSelect?SELECT_ICON:NORMAL_ICON);
-        rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+        if (null != rightDrawable)
+            rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
         mSelectItemTxt.setCompoundDrawables(null, null, rightDrawable, null);
     }
 
