@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.android.tedcoder.androidvideoplayer"
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    lintOptions {
+    abortOnError false
     }
 }
 
