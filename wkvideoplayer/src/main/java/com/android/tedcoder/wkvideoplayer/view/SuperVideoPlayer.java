@@ -188,7 +188,12 @@ public class SuperVideoPlayer extends RelativeLayout {
             mediaPlayer.setOnInfoListener(new MediaPlayer.OnInfoListener() {
                 @Override
                 public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                    if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                    /*
+                     * add what == MediaPlayer.MEDIA_INFO_VIDEO_TRACK_LAGGING
+                     * fix : return what == 700 in Lenovo low configuration Android System
+                     */
+                    if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START
+                            || what == MediaPlayer.MEDIA_INFO_VIDEO_TRACK_LAGGING) {
                         mProgressBarView.setVisibility(View.GONE);
                         setCloseButton(true);
                         initDLNAInfo();
