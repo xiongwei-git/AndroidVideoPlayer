@@ -1,4 +1,6 @@
 #AndroidVideoPlayer
+>Notice:由于代码中的测试视频地址使用了我在七牛存储的视频，导致我的七牛空间下载流量大增，甚至一天5G多。所以我删除了相关视频，导致demo直接运行时无法播放视频的，各位找一个在线视频地址替换即可。
+
 ###Android Video Player , Like NetEaseNews Video Player.
 >Only Support mp4 & 3gp format  
 >Support play at partial view & fullscreen
